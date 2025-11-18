@@ -1,0 +1,131 @@
+---
+title: "RNAseqAnalyzer: End-to-End RNA-seq Analysis Workflow"
+author: "Katarina Vizar Cisarova"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RNAseqAnalyzer: End-to-End RNA-seq Workflow}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  message = TRUE,
+  warning = TRUE
+)
+```
+
+# Introduction
+
+RNAseqAnalyzer provides a complete, modular, end-to-end RNA-seq analysis workflow, integrating:
+
+- Preprocessing
+- Exploratory data analysis
+- Differential expression
+- GSEA pathway enrichment
+- Transcription factor activity inference
+- Immune cell deconvolution
+- WGCNA co-expression modules
+- LINCS L1000 drug connectivity analysis
+
+This vignette demonstrates how to run the pipeline on a typical dataset.
+
+# Installation
+
+```{r, eval=FALSE}
+devtools::install("RNAseqAnalyzer")
+library(RNAseqAnalyzer)
+```
+
+# Input Files
+
+You need:
+
+- Counts file: gene-level raw counts (TSV)
+- TPM file: gene-level TPM (TSV)
+- Metadata: sample → condition table
+- GTF annotation: Gencode or Ensembl
+
+Example metadata:
+
+| SampleID | condition |
+|----------|-----------|
+| S1       | treated   |
+| S2       | treated   |
+| S3       | untreated |
+| S4       | untreated |
+
+# Running the Complete Pipeline
+
+```{r, eval=FALSE}
+results <- run_complete_pipeline(
+  counts_file       = "counts.tsv",
+  tpm_file          = "tpm.tsv",
+  metadata_file     = "metadata.tsv",
+  gtf_file          = "Data/gencode.v46.annotation.gtf",
+  group1_condition  = "treated",
+  group2_condition  = "untreated",
+  experiment_name   = "demo",
+  output_dir        = "Results/Demo/",
+  species           = "human",
+  run_wgcna         = TRUE,
+  run_tf_analysis   = TRUE,
+  run_immune_analysis = TRUE,
+  run_lincs_analysis  = TRUE
+)
+```
+
+# Accessing Results
+
+```{r, eval=FALSE}
+pc_counts <- results$preprocessing$pc_counts
+pc_tpm    <- results$preprocessing$pc_tpm
+metadata  <- results$preprocessing$metadata
+```
+
+# Differential Expression
+
+```{r, eval=FALSE}
+de <- results$differential_expression$de_results$results
+head(de)
+```
+
+# GSEA Pathway Analysis
+
+```{r, eval=FALSE}
+gsea <- results$pathway_analysis$gsea
+head(gsea)
+```
+
+# Immune Cell Deconvolution
+
+```{r, eval=FALSE}
+immune <- results$immune_analysis
+head(immune$statistical_results)
+```
+
+# WGCNA Co-expression Modules
+
+```{r, eval=FALSE}
+modules <- results$wgcna_enhanced$moduleColors
+table(modules)
+```
+
+# LINCS L1000 Drug Connectivity
+
+```{r, eval=FALSE}
+results$lincs$results_table
+```
+
+# Session Info
+
+```{r}
+sessionInfo()
+```
+
+# Conclusion
+
+This vignette demonstrated how to run the full RNAseqAnalyzer pipeline and access the results. The package is designed to be modular, flexible, and publication-ready.

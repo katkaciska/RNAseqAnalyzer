@@ -1,0 +1,11 @@
+.Rproj.user
+inst/doc
+inst/extdata/*
+!inst/extdata/example_*.*
+Data/
+~$gene_sets_to_test.xlsx
+.Rhistory
+.RData
+.httr-oauth
+.DS_Store
+.quarto
