@@ -6,7 +6,7 @@ RNAseqAnalyzer is an R package providing a full RNA‑seq analysis workflow, inc
 
 You can install RNAseqAnalyzer in two ways:
 
-## 🔹 Option 1 — Install directly from GitHub (recommended)
+## 🔹  Install directly from GitHub (recommended)
 
 ```r
 install.packages("devtools")
@@ -14,14 +14,7 @@ devtools::install_github("katkaciska/RNAseqAnalyzer")
 library(RNAseqAnalyzer)
 ```
 
-## 🔹 Option 2 — Install from a downloaded source package
 
-```r
-install.packages("RNAseqAnalyzer_x.y.z.tar.gz",
-                 repos = NULL,
-                 type = "source")
-library(RNAseqAnalyzer)
-```
 
 # Verify Installation
 
