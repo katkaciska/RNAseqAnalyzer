@@ -20,7 +20,7 @@ library(RNAseqAnalyzer)
 
 ```r
 library(RNAseqAnalyzer)
-?run_complete_pipeline
+
 RNAseqAnalyzer::get_required_packages()
 
 ## Required Input Files
