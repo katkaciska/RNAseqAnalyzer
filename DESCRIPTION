@@ -1,7 +1,7 @@
 Package: RNAseqAnalyzer
 Type: Package
 Title: Comprehensive RNA-seq Analysis Pipeline
-Version: 0.1.0
+Version: 2.0.0
 Author: Your Name <your.email@example.com>
 Maintainer: Your Name <your.email@example.com>
 Description: A comprehensive R package for RNA-seq data analysis including 
